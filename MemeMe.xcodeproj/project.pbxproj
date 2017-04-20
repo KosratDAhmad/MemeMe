@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					F55EFFC61EA8B8B000512D8E = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = NW3L46KCK4;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -262,7 +263,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NW3L46KCK4;
 				INFOPLIST_FILE = MemeMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kosratdahmad.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -274,7 +277,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = NW3L46KCK4;
 				INFOPLIST_FILE = MemeMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kosratdahmad.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
