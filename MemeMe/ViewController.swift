@@ -8,14 +8,9 @@
 
 import UIKit
 
-struct Meme {
-    var topText: String
-    var bottomText: String
-    var originalImage: UIImage
-    var memedImage: UIImage
-}
-
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
+    
+    // MARK: Outlets
     
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
@@ -29,62 +24,83 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        // Initialize top and bottom text field attributes.
         let memeTextAttributes:[String:Any] = [
             NSStrokeColorAttributeName: UIColor.black,
             NSForegroundColorAttributeName: UIColor.white ,
             NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
             NSStrokeWidthAttributeName: -4.0]
         
+        // Apply attributes to the top text field.
         topText.text = "TOP"
         topText.delegate = self
         topText.defaultTextAttributes = memeTextAttributes
         topText.textAlignment = .center
         
+        // Apply attributes to the bottom text field.
         bottomText.text = "BOTTOM"
         bottomText.delegate = self
         bottomText.defaultTextAttributes = memeTextAttributes
         bottomText.textAlignment = .center
         
+        // Check user's phone's camera for avalabilty to enable or disable camera funcationality.
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        // Disable share button at start up time because image is not ready to share.
         shareButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
+        
         subscribeToKeyboardNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        
         super.viewWillDisappear(animated)
+        
         unsubscribeFromKeyboardNotifications()
     }
     
+    //MARK: Keyboard Notification
+    
+    /// Subscribe to keyboard notification to know when keyboard will appear or disappear to adapt the layout.
     func subscribeToKeyboardNotifications() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
     
+    /// Unsubscribe from keyboard notification to no longer recieve this notification when view controller disappeared.
     func unsubscribeFromKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
+    /// Adapt the layout when keyboard appeared to the screen specially when you whant to edit bottom text it will adapt the layout to
+    /// show button text field.
+    ///
+    /// - Parameter notification: Notification instance
     func keyboardWillShow(_ notification:Notification) {
         
         if isBottom {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
+    /// Restore the adapted layout when the keyboard disappeared from the screen.
+    ///
+    /// - Parameter notification: Notification instance.
     func keyboardWillHide(_ notification: Notification){
         self.view.frame.origin.y = 0
     }
     
+    /// Get height of the phone's keyboard from keyboard notification.
+    ///
+    /// - Parameter notification: Notification instance.
+    /// - Returns: CGFloat instance which is indicated the height of the keyboard.
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         
         let userInfo = notification.userInfo
@@ -92,7 +108,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return keyboardSize.cgRectValue.height
     }
     
+    //MARK: Actions
     
+    /// Pick an image from phone's ablums.
+    ///
+    /// - Parameter sender: UIView.
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         
         let controller = UIImagePickerController()
@@ -102,6 +122,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(controller, animated: true, completion: nil)
     }
     
+    /// Capture an image from phone's camera if available.
+    ///
+    /// - Parameter sender: UIView
     @IBAction func pickAnImageFromCamera(_ sender: Any){
         
         let controller = UIImagePickerController()
@@ -111,9 +134,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(controller, animated: true, completion: nil)
     }
     
+    /// Share memed image with activity conroller which will can save it to phone's album.
+    ///
+    /// - Parameter sender: UIView
     @IBAction func shareMeme(_ sender: Any) {
         
-        print("Share Meme")
         let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
         
         let viewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
@@ -121,6 +146,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         present(viewController, animated: true, completion: nil)
     }
     
+    /// Generate memed image by taking a screenshot but without toolbars and navigations.
+    ///
+    /// - Returns: Memed UIImage
     func generateMemedImage() -> UIImage {
         
         // Hiden toolbars
@@ -140,6 +168,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return memedImage
     }
     
+    // MARK: Delegates
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
@@ -155,6 +184,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismissPicker()
     }
     
+    
+    /// Dismiss models.
     func dismissPicker() {
         dismiss(animated: true, completion: nil)
     }
@@ -169,6 +200,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             textField.text = ""
         }
         
+        // If the text field is bottom will make the isBottom property to true which will adapt the layout.
         if textField.tag == 0 {
             isBottom = false
         } else {
@@ -177,3 +209,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 }
 
+/// Meme struct to store meme image with original image and texts.
+struct Meme {
+    var topText: String
+    var bottomText: String
+    var originalImage: UIImage
+    var memedImage: UIImage
+}
