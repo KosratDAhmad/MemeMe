@@ -23,13 +23,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="c70-cg-j3o">
-                                <rect key="frame" x="0.0" y="20" width="375" height="597"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="553"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wE-Qf-Uae">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="a9O-lb-8aS"/>
-                                    <barButtonItem title="Camera" id="B7X-k0-Ug2">
+                                    <barButtonItem systemItem="camera" id="B7X-k0-Ug2">
                                         <connections>
                                             <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="HfB-8P-Pq3"/>
                                         </connections>
@@ -55,33 +55,45 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jHM-vF-iRd">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="action" id="Lgs-lI-bpj">
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="yVd-Hs-cXK"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="1wE-Qf-Uae" secondAttribute="trailing" id="1Wm-Ut-IQv"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="c70-cg-j3o" secondAttribute="bottom" constant="50" id="5xD-XW-5Lf"/>
                             <constraint firstItem="EEo-n6-gB2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="96" id="GTy-rE-Ddq"/>
-                            <constraint firstItem="c70-cg-j3o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="Gq8-vv-uCm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="c70-cg-j3o" secondAttribute="trailing" constant="-16" id="Lds-rX-3yj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EEo-n6-gB2" secondAttribute="trailing" id="OvP-Jk-5Bh"/>
                             <constraint firstItem="1wE-Qf-Uae" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="RLk-jz-lUp"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="1wE-Qf-Uae" secondAttribute="bottom" id="Rkx-b2-XYU"/>
-                            <constraint firstItem="c70-cg-j3o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="VdW-8R-Va2"/>
-                            <constraint firstAttribute="trailing" secondItem="c70-cg-j3o" secondAttribute="trailing" id="afN-ca-Aaq"/>
-                            <constraint firstItem="c70-cg-j3o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="haz-AT-4DP"/>
+                            <constraint firstItem="c70-cg-j3o" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="haz-AT-4DP"/>
                             <constraint firstItem="ITp-O8-L8H" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="iEg-xD-3qo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ITp-O8-L8H" secondAttribute="trailing" id="jpc-V0-Cag"/>
                             <constraint firstItem="1wE-Qf-Uae" firstAttribute="top" secondItem="ITp-O8-L8H" secondAttribute="bottom" constant="80" id="ljn-qN-5PW"/>
+                            <constraint firstItem="jHM-vF-iRd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="t5v-Xd-ZVi"/>
+                            <constraint firstAttribute="trailing" secondItem="jHM-vF-iRd" secondAttribute="trailing" id="tFk-HF-uNI"/>
                             <constraint firstItem="c70-cg-j3o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-16" id="tbz-Ax-xLT"/>
+                            <constraint firstItem="jHM-vF-iRd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vYu-7m-i1B"/>
                             <constraint firstItem="c70-cg-j3o" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="16" id="waj-6Q-rHa"/>
                             <constraint firstItem="EEo-n6-gB2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="x1g-NH-uqW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomText" destination="ITp-O8-L8H" id="zLf-AJ-Pgj"/>
+                        <outlet property="bottomToolbar" destination="1wE-Qf-Uae" id="fXw-F9-QO3"/>
                         <outlet property="cameraButton" destination="B7X-k0-Ug2" id="YFw-RX-JNq"/>
                         <outlet property="imagePickerView" destination="c70-cg-j3o" id="DJe-V3-ibn"/>
+                        <outlet property="shareButton" destination="Lgs-lI-bpj" id="IwW-ej-g9E"/>
                         <outlet property="topText" destination="EEo-n6-gB2" id="GRx-yz-ehK"/>
+                        <outlet property="topToolbar" destination="jHM-vF-iRd" id="82e-u0-yCM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

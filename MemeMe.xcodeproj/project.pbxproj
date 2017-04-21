@@ -306,6 +306,7 @@
 				F55EFFDB1EA8B8B000512D8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
