@@ -116,7 +116,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("Share Meme")
         let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
         
-        var viewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
+        let viewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
         
         present(viewController, animated: true, completion: nil)
     }
