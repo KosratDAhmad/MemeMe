@@ -15,6 +15,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     
+    var isBottom = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -58,11 +60,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func unsubscribeFromKeyboardNotifications() {
         
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     
     func keyboardWillShow(_ notification:Notification) {
         
+        if isBottom {
         self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(_ notification: Notification){
@@ -120,6 +125,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField.text == "TOP" || textField.text == "BOTTOM"{
             textField.text = ""
+        }
+        
+        if textField.tag == 0 {
+            isBottom = false
+        } else {
+            isBottom = true
         }
     }
 }
