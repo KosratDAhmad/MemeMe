@@ -156,10 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
         
-        (UIApplication.shared.delegate as! AppDelegate).meme.append(meme)
-        
-        let count = (UIApplication.shared.delegate as! AppDelegate).meme.count
-        print(count)
+        (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
     }
     
     /// Generate memed image by taking a screenshot but without toolbars and navigations.
