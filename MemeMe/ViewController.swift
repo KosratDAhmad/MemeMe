@@ -144,7 +144,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         viewController.completionWithItemsHandler = {(activityType, complete, returnedItems, activityError ) in
             
             if complete {
-                self.save()
+                self.save(memedImage)
+                self.dismissPicker()
             }
         }
         
@@ -152,9 +153,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     /// Save meme object.
-    func save() {
+    func save(_ memedImage: UIImage) {
         
-        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: memedImage)
         
         (UIApplication.shared.delegate as! AppDelegate).memes.append(meme)
     }
