@@ -181,6 +181,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return memedImage
     }
     
+    @IBAction func cancel(_ sender: Any) {
+        dismissPicker()
+    }
+    
     // MARK: Delegates
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {

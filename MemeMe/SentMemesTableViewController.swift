@@ -16,6 +16,8 @@ class SentMemesTableViewController: UIViewController, UITableViewDelegate, UITab
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme))
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
@@ -41,5 +43,11 @@ class SentMemesTableViewController: UIViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         
+    }
+    
+    func addMeme() {
+        
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        present(controller, animated: true, completion: nil)
     }
 }
