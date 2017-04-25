@@ -139,11 +139,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     /// - Parameter sender: UIView
     @IBAction func shareMeme(_ sender: Any) {
         
-        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
-        
-        let viewController = UIActivityViewController(activityItems: [meme.memedImage], applicationActivities: nil)
+        let memedImage = generateMemedImage()
+        let viewController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        viewController.completionWithItemsHandler = {(activityType, complete, returnedItems, activityError ) in
+            
+            if complete {
+                self.save()
+            }
+        }
         
         present(viewController, animated: true, completion: nil)
+    }
+    
+    /// Save meme object.
+    func save() {
+        
+        let meme = Meme(topText: topText.text!, bottomText: bottomText.text!, originalImage: imagePickerView.image!, memedImage: generateMemedImage())
+        
+        (UIApplication.shared.delegate as! AppDelegate).meme.append(meme)
+        
+        let count = (UIApplication.shared.delegate as! AppDelegate).meme.count
+        print(count)
     }
     
     /// Generate memed image by taking a screenshot but without toolbars and navigations.
