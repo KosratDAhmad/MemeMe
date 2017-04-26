@@ -9,7 +9,7 @@
 import UIKit
 
 class SentMemesCollectionViewController: UICollectionViewController {
-
+    
     var memes = [Meme]() {
         didSet {
             guard collectionView != nil else { return }
@@ -20,10 +20,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMeme))
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -48,6 +54,9 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let detail = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        detail.meme = memes[indexPath.row]
+        navigationController?.pushViewController(detail, animated: true)
     }
     
     func addMeme() {
@@ -55,5 +64,4 @@ class SentMemesCollectionViewController: UICollectionViewController {
         let controller = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! MemeEditorViewController
         present(controller, animated: true, completion: nil)
     }
-
 }

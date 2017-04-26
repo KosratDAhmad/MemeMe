@@ -57,6 +57,38 @@
             </objects>
             <point key="canvasLocation" x="558" y="332"/>
         </scene>
+        <!--Meme Detail View Controller-->
+        <scene sceneID="3Ny-LH-tZE">
+            <objects>
+                <viewController storyboardIdentifier="MemeDetailViewController" id="ebH-ZJ-Bhy" customClass="MemeDetailViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="opf-vE-w1L"/>
+                        <viewControllerLayoutGuide type="bottom" id="yGD-Cl-Lbs"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GQb-0t-HOu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QTc-oy-Mb9">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="QTc-oy-Mb9" firstAttribute="top" secondItem="opf-vE-w1L" secondAttribute="bottom" id="R92-Vk-fUy"/>
+                            <constraint firstItem="QTc-oy-Mb9" firstAttribute="leading" secondItem="GQb-0t-HOu" secondAttribute="leadingMargin" constant="-16" id="YuJ-QI-FMl"/>
+                            <constraint firstItem="yGD-Cl-Lbs" firstAttribute="top" secondItem="QTc-oy-Mb9" secondAttribute="bottom" id="m5L-Hf-dBq"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="QTc-oy-Mb9" secondAttribute="trailing" constant="-16" id="suN-Yq-dvT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="image" destination="QTc-oy-Mb9" id="jVt-pM-eqc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KYH-Uy-xnL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1428" y="331"/>
+        </scene>
         <!--Sent Memes Collection View Controller-->
         <scene sceneID="cUX-3h-gIp">
             <objects>
@@ -200,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1503" y="-388"/>
+            <point key="canvasLocation" x="1428" y="-388"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="fu4-D7-Yvr">
