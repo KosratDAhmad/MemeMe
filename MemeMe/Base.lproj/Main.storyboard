@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="sVO-gy-xQy">
             <objects>
                 <navigationController id="R4G-Ye-Rjh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="IAK-Yg-XKC"/>
+                    <tabBarItem key="tabBarItem" title="" image="table" selectedImage="table" id="IAK-Yg-XKC"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vrm-Nm-ARM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -220,11 +220,11 @@
             </objects>
             <point key="canvasLocation" x="-1497" y="18"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="dK7-xC-Zzz">
             <objects>
                 <navigationController id="jqg-aA-CFk" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="XIB-Fy-I3F"/>
+                    <tabBarItem key="tabBarItem" title="" image="collection" selectedImage="collection" id="XIB-Fy-I3F"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AkS-zT-OEY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -238,4 +238,8 @@
             <point key="canvasLocation" x="-290" y="-388"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collection" width="30" height="30"/>
+        <image name="table" width="30" height="30"/>
+    </resources>
 </document>
