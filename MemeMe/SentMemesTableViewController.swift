@@ -50,7 +50,7 @@ class SentMemesTableViewController: UITableViewController {
     
     func addMeme() {
         
-        let controller = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        let controller = storyboard?.instantiateViewController(withIdentifier: "ViewController") as! MemeEditorViewController
         present(controller, animated: true, completion: nil)
     }
 }
