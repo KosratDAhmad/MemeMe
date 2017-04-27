@@ -133,6 +133,9 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="cBa-uo-5Fl"/>
+                    <connections>
+                        <outlet property="flowLayout" destination="2Ll-6D-ovV" id="IFZ-9y-ADX"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XfY-NC-qqZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
