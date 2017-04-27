@@ -27,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-290" y="333"/>
         </scene>
-        <!--Sent Memes Table View Controller-->
+        <!--Sent Meme-->
         <scene sceneID="aRz-hZ-pSf">
             <objects>
                 <tableViewController id="uO6-2f-9az" customClass="SentMemesTableViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -51,7 +51,7 @@
                             <outlet property="delegate" destination="uO6-2f-9az" id="pR4-JU-Nmh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="St2-iQ-d1e"/>
+                    <navigationItem key="navigationItem" title="Sent Meme" id="St2-iQ-d1e"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8K-7I-eJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="1428" y="331"/>
         </scene>
-        <!--Sent Memes Collection View Controller-->
+        <!--Sent Meme-->
         <scene sceneID="cUX-3h-gIp">
             <objects>
                 <collectionViewController id="PEg-zb-4cV" customClass="SentMemesCollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -132,7 +132,7 @@
                             <outlet property="delegate" destination="PEg-zb-4cV" id="hMA-jj-I62"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="cBa-uo-5Fl"/>
+                    <navigationItem key="navigationItem" title="Sent Meme" id="cBa-uo-5Fl"/>
                     <connections>
                         <outlet property="flowLayout" destination="2Ll-6D-ovV" id="IFZ-9y-ADX"/>
                     </connections>

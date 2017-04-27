@@ -18,6 +18,7 @@ class MemeDetailViewController: UIViewController {
 
         image.image = meme.memedImage
         self.tabBarController?.tabBar.isHidden = true
+        title = "Meme Detail"
     }
 
 }
