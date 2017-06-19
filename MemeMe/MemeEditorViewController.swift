@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMe
 //
 //  Created by Kosrat D. Ahmad on 4/20/17.
@@ -29,15 +29,15 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         configure(textField: topText, withText: "TOP")
         configure(textField: bottomText, withText: "BOTTOM")
         
-        // Check user's phone's camera for avalabilty to enable or disable camera funcationality.
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
         // Disable share button at start up time because image is not ready to share.
         shareButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Check user's phone's camera for avalabilty to enable or disable camera funcationality.
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
         subscribeToKeyboardNotifications()
     }
@@ -233,10 +233,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         // If the text field is bottom will make the isBottom property to true which will adapt the layout.
-        if textField.tag == 0 {
-            isBottom = false
-        } else {
-            isBottom = true
-        }
+        isBottom = textField.tag != 0
     }
 }
