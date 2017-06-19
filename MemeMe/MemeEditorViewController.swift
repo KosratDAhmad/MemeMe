@@ -25,24 +25,9 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Initialize top and bottom text field attributes.
-        let memeTextAttributes:[String:Any] = [
-            NSStrokeColorAttributeName: UIColor.black,
-            NSForegroundColorAttributeName: UIColor.white ,
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-            NSStrokeWidthAttributeName: -4.0]
-        
-        // Apply attributes to the top text field.
-        topText.text = "TOP"
-        topText.delegate = self
-        topText.defaultTextAttributes = memeTextAttributes
-        topText.textAlignment = .center
-        
-        // Apply attributes to the bottom text field.
-        bottomText.text = "BOTTOM"
-        bottomText.delegate = self
-        bottomText.defaultTextAttributes = memeTextAttributes
-        bottomText.textAlignment = .center
+        // Configure top and buttom text field.
+        configure(textField: topText, withText: "TOP")
+        configure(textField: bottomText, withText: "BOTTOM")
         
         // Check user's phone's camera for avalabilty to enable or disable camera funcationality.
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -61,6 +46,27 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewWillDisappear(animated)
         
         unsubscribeFromKeyboardNotifications()
+    }
+    
+    /// Configure a text field with a style.
+    ///
+    /// - Parameters:
+    ///   - textField: UITextField
+    ///   - withText: Default text field string.
+    func configure(textField: UITextField, withText: String) {
+        
+        // Initialize top and bottom text field attributes.
+        let memeTextAttributes:[String:Any] = [
+            NSStrokeColorAttributeName: UIColor.black,
+            NSForegroundColorAttributeName: UIColor.white ,
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+            NSStrokeWidthAttributeName: -4.0]
+        
+        // Apply attributes to the top text field.
+        textField.text = withText
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
     }
     
     //MARK: Keyboard Notification
@@ -114,22 +120,24 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     ///
     /// - Parameter sender: UIView.
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        
-        let controller = UIImagePickerController()
-        controller.delegate = self
-        controller.sourceType = .photoLibrary
-        
-        present(controller, animated: true, completion: nil)
+       chooseSourceType(sourceType: .photoLibrary)
     }
     
     /// Capture an image from phone's camera if available.
     ///
     /// - Parameter sender: UIView
     @IBAction func pickAnImageFromCamera(_ sender: Any){
+        chooseSourceType(sourceType: .camera)
+    }
+    
+    /// Bring a model to choose image from library or take it from camera
+    ///
+    /// - Parameter sourceType: UIImagePickerControllerSourceType
+    func chooseSourceType(sourceType: UIImagePickerControllerSourceType) {
         
         let controller = UIImagePickerController()
         controller.delegate = self
-        controller.sourceType = .camera
+        controller.sourceType = sourceType
         
         present(controller, animated: true, completion: nil)
     }
@@ -166,8 +174,7 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     func generateMemedImage() -> UIImage {
         
         // Hiden toolbars
-        bottomToolbar.isHidden = true
-        topToolbar.isHidden = true
+        hideToolbar(isHidden: true)
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -176,10 +183,17 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         UIGraphicsEndImageContext()
         
         // Show toolbars
-        bottomToolbar.isHidden = false
-        topToolbar.isHidden = false
+        hideToolbar(isHidden: false)
         
         return memedImage
+    }
+    
+    /// Helper method to show or hide app toolbar
+    ///
+    /// - Parameter isHidden: Boolean to indicate hide or not the toolbar
+    func hideToolbar(isHidden: Bool) {
+        bottomToolbar.isHidden = isHidden
+        topToolbar.isHidden = isHidden
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -225,12 +239,4 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
             isBottom = true
         }
     }
-}
-
-/// Meme struct to store meme image with original image and texts.
-struct Meme {
-    var topText: String
-    var bottomText: String
-    var originalImage: UIImage
-    var memedImage: UIImage
 }
